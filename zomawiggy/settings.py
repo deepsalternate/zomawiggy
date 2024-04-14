@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^9fvsrx7mu$j@0x_z4v+ukr6q3s*4zbxwbzr#lx)to-93xxx!t'
+
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'zomawiggy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,8 +77,13 @@ WSGI_APPLICATION = 'zomawiggy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        # 'PORT': '5432',
+
     }
 }
 
@@ -116,8 +123,52 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT=BASE_DIR/'static'
+STATICFILES_DIRS=[
+    'zomawiggy/static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# deepaks is username and password is deepaks@123 email is deepaks@abc.com
+# static files are css javascript and images
+# the momnet we runn collectstatic command 
+# it will collect all the static files and put them in static folder
+
+# base_dir is root directory of project
+# ann static root is the folder where all the static files are stored
+# all the file will be save in Static_ROOT
+
+# it create a folder called static in root directory of project
+# and then it will put all the static files in that folder
+# all the static files will be save in static folder
+# # static files are css javascript and images
+# the momnet we runn collectstatic command
+# static files saved in static folder via collect static command will work in producntion server only
+# admin in static is used for admin panel
+#collectstatic command is useful for production environment only
+
+
+
+# password for postgressql is superuser
+
