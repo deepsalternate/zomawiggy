@@ -1,0 +1,17 @@
+SECRET_KEY = 'django-insecure-a)^((52=#wnwcq-hn^agpu_ltpcdj0n$7*pynxal3t9spw3aag'
+
+
+
+SECRET_KEY=django-insecure-a)^((52=#wnwcq-hn^agpu_ltpcdj0n$7*pynxal3t9spw3aag
+DEBUG=True
+
+
+
+# DAtabase configuratoion.
+
+
+DB_NAME:zommwiggy_db
+DB_USER:postgres
+DB_PASSWORD:admin
+DB_HOST:localhost
+DB_PORT:5432
